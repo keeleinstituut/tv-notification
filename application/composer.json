@@ -13,6 +13,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
+        "keeleinstituut/tv-common-laravel-amqp": "0.0.29",
         "keeleinstituut/tv-common-laravel-security": "0.0.16",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
@@ -63,6 +64,10 @@
         }
     },
     "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/keeleinstituut/tv-common-laravel-amqp"
+        },
         {
             "type": "vcs",
             "url": "https://github.com/keeleinstituut/tv-common-laravel-security"
