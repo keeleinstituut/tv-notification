@@ -1,20 +1,21 @@
 <?php
 
+use App\Events\EmailDispatched;
+use SyncTools\Events\MessageEventFactory;
+
 return [
     /*
     |--------------------------------------------------------------------------
     | AMQP connection properties
     |--------------------------------------------------------------------------
     */
-//    'connection' => [
-//        'host' => env('AMQP_HOST', 'localhost'),
-//        'port' => env('AMQP_PORT', 5672),
-//        'username' => env('AMQP_USER', ''),
-//        'password' => env('AMQP_PASSWORD', ''),
-//        'vhost' => env('AMQP_VHOST', '/'),
-//        'connect_options' => [],
-//        'ssl_options' => [],
-//    ],
+    'connection' => [
+        'host' => env('AMQP_HOST', 'localhost'),
+        'port' => env('AMQP_PORT', 5672),
+        'username' => env('AMQP_USER', 'guest'),
+        'password' => env('AMQP_PASSWORD', 'guest'),
+        'vhost' => env('AMQP_VHOST', '/'),
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -41,41 +42,22 @@ return [
     | AMQP consumer properties (remove if not needed)
     |--------------------------------------------------------------------------
     */
-//    'consumer' => [
-//        'queues' => [
-//            [
-//                'queue' => 'some-queue',
-//                'bindings' => [
-//                    [
-//                        'exchange' => 'some-exchange',
-//                        'routingKey' => 'some-key',
-//                    ],
-//                ],
-//            ],
-//        ],
-//        'events' => [
-//            'mode' => 'routing-key',
-//            'map' => [
-//                'institution.created' => 'App\Events\SomeEventClassNameThatExtends_BaseConsumedEvent',
-//            ],
-//        ],
-//
-//        'no_local' => false, // Don't receive messages published by this consumer.
-//        'no_ack' => false, // Tells the server if the consumer will acknowledge the messages.
-//        'enable_manual_acknowledgment' => false, // If true, disables automatic acknowledgment of messages by this AMQP library
-//        'exclusive' => false, // Request exclusive consumer access, meaning only this consumer can access the queue
-//        'nowait' => false,
-//        'properties' => [],
-//        'timeout' => 0,
-//
-//        /*
-//         * The consumer-prefetch make it possible to limit the number of unacknowledged messages on a channel (or connection) when consuming.
-//         * Or, in other words, don't dispatch a new message to a worker until it has processed and acknowledged the previous one
-//         */
-//        'qos' => [
-//            'prefetch_size' => 0,
-//            'prefetch_count' => 1,
-//            'global' => false,
-//        ],
-//    ],
+    'consumer' => [
+        'queues' => [
+            [
+                'queue' => 'tv-notification.email',
+                'bindings' => [
+                    [
+                        'exchange' => 'email',
+                    ],
+                ],
+            ],
+        ],
+        'events' => [
+            'mode' => MessageEventFactory::MODE_ROUTING_KEY,
+            'map' => [
+                'email.dispatched' => EmailDispatched::class,
+            ],
+        ],
+    ],
 ];
