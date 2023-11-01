@@ -4,8 +4,6 @@ namespace App\Listeners;
 
 use App\Events\EmailDispatched;
 use App\Services\EmailService;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SendEmailNotification
 {
@@ -22,7 +20,6 @@ class SendEmailNotification
      */
     public function handle(EmailDispatched $event): void
     {
-        dd($event);
-        // EmailService::deliver(...);
+        EmailService::deliver($event->params);
     }
 }

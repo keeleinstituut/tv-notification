@@ -25,14 +25,8 @@ return [
 //    'publisher' => [
 //        'exchanges' => [
 //            [
-//                'exchange' => 'amq.topic',
-//                'type' => 'topic',
-//                'passive' => false,
-//                'durable' => true,
-//                'auto_delete' => false,
-//                'internal' => false,
-//                'nowait' => false,
-//                'properties' => [],
+//                'exchange' => 'email',
+//                'type' => 'fanout',
 //            ],
 //        ],
 //    ],

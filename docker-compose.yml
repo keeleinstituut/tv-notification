@@ -12,16 +12,17 @@ services:
     ports:
       - ${DB_PORT}:5432
     environment:
-      - POSTGRES_DB=tv-notification
+      - POSTGRES_DB=app
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=pass
     volumes:
       - ./dev-db-init.sql:/docker-entrypoint-initdb.d/init.sql
 
   rabbitmq:
-    image: rabbitmq:latest
+    image: rabbitmq:management
     ports:
       - ${AMQP_PORT}:5672
+      - ${AMQP_UI_PORT}:15672
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest

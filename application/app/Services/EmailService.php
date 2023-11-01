@@ -2,12 +2,24 @@
 
 namespace App\Services;
 
+use App\Mail\Email;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Mail;
 
 class EmailService
 {
-    public static function deliver()
+    public static function deliver(array $params): void
     {
-        // Mail::to();
+        Notification::create([
+            'type' => 'email',
+            'data' => json_encode([
+                'template' => $params['template'],
+                'userName' => $params['userName'],
+                'recipient' => $params['recipient'],
+                'subject' => $params['subject'],
+            ]),
+        ]);
+
+        Mail::to($params['recipient'])->send(new Email($params));
     }
 }
