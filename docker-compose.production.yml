@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
 #    command: sleep infinity
     depends_on:
-      - postgres
+#      - postgres
       - rabbitmq
     ports:
       - ${APP_PORT}:80
@@ -20,12 +20,12 @@ services:
       - LOG_CHANNEL=stderr
       - LOG_DEPRECATIONS_CHANNEL=null
       - LOG_LEVEL=debug
-      - DB_CONNECTION=pgsql
-      - DB_HOST=postgres
-      - DB_PORT=5432
-      - DB_DATABASE=app
-      - DB_USERNAME=user
-      - DB_PASSWORD=pass
+#      - DB_CONNECTION=pgsql
+#      - DB_HOST=postgres
+#      - DB_PORT=5432
+#      - DB_DATABASE=app
+#      - DB_USERNAME=user
+#      - DB_PASSWORD=pass
       - BROADCAST_DRIVER=log
       - CACHE_DRIVER=file
       - FILESYSTEM_DISK=local

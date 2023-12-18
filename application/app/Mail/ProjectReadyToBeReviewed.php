@@ -11,7 +11,7 @@ class ProjectReadyToBeReviewed extends BaseEmailNotificationMessage
 
     protected function title(): string
     {
-        return 'ellimus vastuvõtmiseks valmis';
+        return 'Tellimus vastuvõtmiseks valmis';
     }
 
     protected function templateVariables(): array

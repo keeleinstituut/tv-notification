@@ -132,8 +132,8 @@ set -e
 echo "Optimize for loading in runtime variables"
 php artisan optimize
 
-echo "Running migrations"
-php artisan migrate --force
+#echo "Running migrations"
+#php artisan migrate --force
 
 echo "Generating OpenAPI document"
 php artisan l5-swagger:generate

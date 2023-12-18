@@ -17,7 +17,7 @@ class TaskAccepted extends BaseEmailNotificationMessage
     protected function templateVariables(): array
     {
         return [
-            'vendorName' => $this->getVariable('user.name'),
+            'assigneeName' => $this->getVariable('vendor.company_name', $this->getVariable('user.name')),
             'taskExtId' => $this->getVariable('assignment.ext_id'),
             'taskShortName' => $this->getVariable('job_definition.job_short_name'),
         ];

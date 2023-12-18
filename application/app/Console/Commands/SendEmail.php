@@ -36,7 +36,6 @@ class SendEmail extends Command
     {
         $receiverEmail = '';
         $receiverName = '';
-
         dump('STARTING PUBLISH');
 
         //        $publisher->publishEmailNotification(
