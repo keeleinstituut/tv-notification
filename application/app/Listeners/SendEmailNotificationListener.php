@@ -8,8 +8,7 @@ use App\Mail\InstitutionUserAssignedToProject;
 use App\Mail\InstitutionUserCreated;
 use App\Mail\NewVendorTaskAvailable;
 use App\Mail\ProjectAccepted;
-use App\Mail\ProjectCancelledClient;
-use App\Mail\ProjectCancelledProjectManager;
+use App\Mail\ProjectCancelled;
 use App\Mail\ProjectCreated;
 use App\Mail\ProjectDeadlineReached;
 use App\Mail\ProjectReadyToBeReviewed;
@@ -91,8 +90,7 @@ class SendEmailNotificationListener
 
         return match ($notificationType) {
             NotificationType::ProjectCreated => new ProjectCreated($data),
-            NotificationType::ProjectCancelledPm => new ProjectCancelledProjectManager($data),
-            NotificationType::ProjectCancelledClient => new ProjectCancelledClient($data),
+            NotificationType::ProjectCancelled => new ProjectCancelled($data),
             NotificationType::InstitutionUserAssignedToProject => new InstitutionUserAssignedToProject($data),
             NotificationType::TaskAccepted => new TaskAccepted($data),
             NotificationType::SubProjectTaskMarkedAsDone => new SubProjectTaskDone($data),

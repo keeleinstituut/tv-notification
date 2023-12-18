@@ -54,13 +54,14 @@ class SendEmail extends Command
 
         //        $publisher->publishEmailNotification(
         //            EmailNotificationMessage::make([
-        //                'notification_type' => NotificationType::ProjectCancelledPm,
+        //                'notification_type' => NotificationType::ProjectCancelled,
         //                'receiver_email' => $receiverEmail,
         //                'receiver_name' => $receiverName,
         //                'variables' => [
         //                    'project' => [
         //                        'ext_id' => 'OIU-2023-12-T-130',
-        //                        'cancellation_description' => 'The project is not needed anymore'
+        //                        'cancellation_reason' => 'The project is not needed anymore',
+        //                        'cancellation_comment' => 'The project is not needed anymore comment',
         //                    ]
         //                ]
         //            ])
@@ -174,24 +175,6 @@ class SendEmail extends Command
         //                'receiver_name' => $receiverName,
         //                'variables' => [
         //                    'project' => ['ext_id' => 'OIU-2023-12-T-130'],
-        //                ]
-        //            ])
-        //        );
-
-        //        $publisher->publishEmailNotification(
-        //            EmailNotificationMessage::make([
-        //                'notification_type' => NotificationType::ProjectCancelledClient,
-        //                'receiver_email' => $receiverEmail,
-        //                'receiver_name' => $receiverName,
-        //                'variables' => [
-        //                    'project' => [
-        //                        'ext_id' => 'OIU-2023-12-T-130',
-        //                        'cancellation_description' => 'The project is not needed anymore',
-        //                        'cancellation_sub_projects' => [
-        //                            ['ext_id' => 'OIU-2023-12-T-130/1'],
-        //                            ['ext_id' => 'OIU-2023-12-T-130/2'],
-        //                        ]
-        //                    ],
         //                ]
         //            ])
         //        );

@@ -2,11 +2,11 @@
 
 namespace App\Mail;
 
-class ProjectCancelledProjectManager extends BaseEmailNotificationMessage
+class ProjectCancelled extends BaseEmailNotificationMessage
 {
     protected function template(): string
     {
-        return 'emails.project-cancelled-pm';
+        return 'emails.project-cancelled';
     }
 
     protected function title(): string
@@ -18,7 +18,8 @@ class ProjectCancelledProjectManager extends BaseEmailNotificationMessage
     {
         return [
             'projectExtId' => $this->getVariable('project.ext_id'),
-            'cancellationDescription' => $this->getVariable('project.cancellation_description'),
+            'cancellationReason' => $this->getVariable('project.cancellation_reason'),
+            'cancellationComment' => $this->getVariable('project.cancellation_comment'),
         ];
     }
 }
