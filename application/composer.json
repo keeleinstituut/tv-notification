@@ -7,14 +7,15 @@
     "require": {
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.2",
+        "innoge/laravel-msgraph-mail": "^1.0",
+        "keeleinstituut/tv-common-laravel-amqp": "0.0.55",
+        "keeleinstituut/tv-common-laravel-security": "0.0.19",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
-        "keeleinstituut/tv-common-laravel-amqp": "0.0.29",
-        "keeleinstituut/tv-common-laravel-security": "0.0.16",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
@@ -25,7 +26,6 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
     },

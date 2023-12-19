@@ -112,6 +112,17 @@ stdout_logfile=/dev/stdout
 stdout_logfile_maxbytes = 0
 stderr_logfile=/dev/stderr
 stderr_logfile_maxbytes=0
+
+[program:consume-email-notifications]
+process_name=%(program_name)s
+command=php /app/artisan amqp:consume tv-notification.email  # see /application/config/amqp.php
+autostart=true
+autorestart=true
+numprocs=1
+stdout_logfile=/dev/stdout
+stdout_logfile_maxbytes = 0
+stderr_logfile=/dev/stderr
+stderr_logfile_maxbytes=0
 EOF
 
 RUN <<EOF cat > ${ENTRYPOINT}
@@ -121,8 +132,8 @@ set -e
 echo "Optimize for loading in runtime variables"
 php artisan optimize
 
-echo "Running migrations"
-php artisan migrate --force
+#echo "Running migrations"
+#php artisan migrate --force
 
 echo "Generating OpenAPI document"
 php artisan l5-swagger:generate
