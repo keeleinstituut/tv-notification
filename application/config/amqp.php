@@ -1,6 +1,6 @@
 <?php
 
-use App\Events\EmailDispatched;
+use App\Events\EmailNotificationConsumedEvent;
 use SyncTools\Events\MessageEventFactory;
 
 return [
@@ -22,20 +22,14 @@ return [
     | AMQP publisher properties (remove if not needed)
     |--------------------------------------------------------------------------
     */
-//    'publisher' => [
-//        'exchanges' => [
-//            [
-//                'exchange' => 'amq.topic',
-//                'type' => 'topic',
-//                'passive' => false,
-//                'durable' => true,
-//                'auto_delete' => false,
-//                'internal' => false,
-//                'nowait' => false,
-//                'properties' => [],
-//            ],
-//        ],
-//    ],
+    'publisher' => [
+        'exchanges' => [
+            [
+                'exchange' => env('EMAIL_NOTIFICATION_EXCHANGE'),
+                'type' => 'topic',
+            ],
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -45,19 +39,28 @@ return [
     'consumer' => [
         'queues' => [
             [
-                'queue' => 'tv-notification.email',
+                'queue' => env('EMAIL_NOTIFICATION_QUEUE'),
                 'bindings' => [
-                    [
-                        'exchange' => 'email',
-                    ],
+                    ['exchange' => env('EMAIL_NOTIFICATION_EXCHANGE')],
                 ],
             ],
         ],
         'events' => [
-            'mode' => MessageEventFactory::MODE_ROUTING_KEY,
+            'mode' => MessageEventFactory::MODE_QUEUE,
             'map' => [
-                'email.dispatched' => EmailDispatched::class,
+                env('EMAIL_NOTIFICATION_QUEUE') => EmailNotificationConsumedEvent::class,
             ],
         ],
+        'enable_manual_acknowledgement' => true,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Notifications AMQP properties (remove if not needed)
+    |--------------------------------------------------------------------------
+    */
+    'notifications' => [
+        'email_notification_exchange' => env('EMAIL_NOTIFICATION_EXCHANGE'),
+        'required_jwt_realm_role' => env('NOTIFICATION_REQUIRED_JWT_REALM_ROLE', 'publish-notifications'),
     ],
 ];
