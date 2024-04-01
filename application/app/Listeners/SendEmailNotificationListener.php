@@ -18,6 +18,7 @@ use App\Mail\ProjectSentToClient;
 use App\Mail\SubProjectIsReadyForReview;
 use App\Mail\SubProjectTaskDone;
 use App\Mail\TaskAccepted;
+use App\Mail\TaskCancelled;
 use App\Mail\VendorTaskRejected;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Mail\Mailable;
@@ -103,6 +104,7 @@ class SendEmailNotificationListener
             NotificationType::ProjectReadyForReview => new ProjectReadyToBeReviewed($data),
             NotificationType::TaskCreated => new NewVendorTaskAvailable($data),
             NotificationType::TaskRejected => new VendorTaskRejected($data),
+            NotificationType::TaskCancelled => new TaskCancelled($data),
             NotificationType::InstitutionUserCreated => new InstitutionUserCreated($data),
             NotificationType::InstitutionUserActivated => new InstitutionUserActivated($data),
             default => throw new RuntimeException('No email message found for notification type: '.$notificationType->value)
