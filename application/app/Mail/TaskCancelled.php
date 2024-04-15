@@ -2,22 +2,21 @@
 
 namespace App\Mail;
 
-class TaskAccepted extends BaseEmailNotificationMessage
+class TaskCancelled extends BaseEmailNotificationMessage
 {
     protected function template(): string
     {
-        return 'emails.task-accepted';
+        return 'emails.task-cancelled';
     }
 
     protected function title(): string
     {
-        return 'Ülesanne vastuvõetud';
+        return 'Ülesanne tühistatud';
     }
 
     protected function templateVariables(): array
     {
         return [
-            'assigneeName' => $this->getVariable('user.name'),
             'taskExtId' => $this->getVariable('assignment.ext_id'),
             'taskShortName' => $this->getVariable('job_definition.job_short_name'),
         ];

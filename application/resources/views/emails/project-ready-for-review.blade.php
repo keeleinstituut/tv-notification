@@ -1,5 +1,5 @@
 @extends('emails.layout')
 
 @section('content')
-    Tellimus nr ${projectExtId} on valmis.
+    Tellimus nr  {{ $projectExtId }} on valmis.
 @stop
