@@ -20,9 +20,12 @@ use App\Mail\SubProjectTaskDone;
 use App\Mail\TaskAccepted;
 use App\Mail\TaskCancelled;
 use App\Mail\VendorTaskRejected;
+use AuditLogClient\Services\AuditLogMessageBuilder;
+use AuditLogClient\Services\AuditLogPublisher;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -35,7 +38,7 @@ use Throwable;
 
 class SendEmailNotificationListener
 {
-    public function __construct(readonly private EnsureJwtBelongsToServiceAccountWithSyncRole $syncRoleAuthChecker)
+    public function __construct(readonly private EnsureJwtBelongsToServiceAccountWithSyncRole $syncRoleAuthChecker, readonly private AuditLogPublisher $auditLogPublisher)
     {
     }
 
@@ -79,6 +82,14 @@ class SendEmailNotificationListener
     private function sendEmail(EmailNotificationConsumedEvent $event): void
     {
         Mail::send($this->composeMessage($event));
+
+        $this->auditLogPublisher->publish(
+            AuditLogMessageBuilder::make(
+                happenedAt: Date::now(),
+                contextInstitutionId: data_get($event->message->get('application_headers'), 'institutionId'),
+            )
+                ->toDispatchNotificationEvent($event->getBody())
+        );
     }
 
     private function composeMessage(EmailNotificationConsumedEvent $event): Mailable
