@@ -1,28 +1,16 @@
 version: "3.8"
 
 services:
-  app:
-    depends_on:
-#      - postgres
-      - rabbitmq
-
-#  postgres:
-#    image: postgres:latest
-#    command: ["postgres", "-c", "log_statement=all"]
-#    ports:
-#      - ${DB_PORT}:5432
-#    environment:
-#      - POSTGRES_DB=app
-#      - POSTGRES_USER=user
-#      - POSTGRES_PASSWORD=pass
-#    volumes:
-#      - ./dev-db-init.sql:/docker-entrypoint-initdb.d/init.sql
-
-  rabbitmq:
-    image: rabbitmq:management
+  mailcatcher:
+    image: axllent/mailpit
     ports:
-      - ${AMQP_PORT}:5672
-      - ${AMQP_UI_PORT}:15672
-    environment:
-      - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAULT_PASS=guest
+      - "1080:8025"
+
+#  rabbitmq:
+#    image: rabbitmq:management
+#    ports:
+#      - ${AMQP_PORT}:5672
+#      - ${AMQP_UI_PORT}:15672
+#    environment:
+#      - RABBITMQ_DEFAULT_USER=guest
+#      - RABBITMQ_DEFAULT_PASS=guest
