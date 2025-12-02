@@ -6,11 +6,10 @@ services:
     ports:
       - "1080:8025"
 
-#  rabbitmq:
-#    image: rabbitmq:management
-#    ports:
-#      - ${AMQP_PORT}:5672
-#      - ${AMQP_UI_PORT}:15672
-#    environment:
-#      - RABBITMQ_DEFAULT_USER=guest
-#      - RABBITMQ_DEFAULT_PASS=guest
+  rabbitmq:
+    image: rabbitmq:latest
+    ports:
+      - ${AMQP_PORT}:5672
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
