@@ -52,7 +52,7 @@ return [
         'events' => [
             'mode' => MessageEventFactory::MODE_QUEUE,
             'map' => [
-                env('EMAIL_NOTIFICATION_QUEUE') => EmailNotificationConsumedEvent::class,
+                env('EMAIL_NOTIFICATION_QUEUE', '') => EmailNotificationConsumedEvent::class,
             ],
         ],
         'enable_manual_acknowledgement' => true,

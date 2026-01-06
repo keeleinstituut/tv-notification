@@ -5,8 +5,8 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.3",
-        "guzzlehttp/guzzle": "^7.2",
+        "php": "^8.5",
+        "guzzlehttp/guzzle": "^7.10",
         "innoge/laravel-msgraph-mail": "^1.0",
         "keeleinstituut/tv-common-laravel-amqp": "^0.0.74",
         "keeleinstituut/tv-common-laravel-security": "^0.0.21",
