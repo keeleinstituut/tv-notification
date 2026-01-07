@@ -135,11 +135,6 @@ EOF
 RUN <<EOF cat > ${ENTRYPOINT}
 #!/bin/sh
 set -e
-
-# Fix permissions (run as root)
-chown -R www-data:www-data ./bootstrap/cache
-chown -R www-data:www-data ./storage
-
 # Run artisan commands as www-data user
 echo "Optimize for loading in runtime variables"
 su www-data -s /bin/sh -c "php artisan optimize"
