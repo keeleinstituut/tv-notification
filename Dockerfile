@@ -100,6 +100,7 @@ process_name=%(program_name)s
 command=php /app/artisan queue:work
 autostart=true
 autorestart=true
+environment=HOME="/home/www-data"
 user=www-data
 numprocs=1
 stdout_logfile=/dev/stdout
@@ -112,6 +113,7 @@ process_name=%(program_name)s
 command=php /app/artisan schedule:work
 autostart=true
 autorestart=true
+environment=HOME="/home/www-data"
 user=www-data
 numprocs=1
 stdout_logfile=/dev/stdout
@@ -124,6 +126,7 @@ process_name=%(program_name)s
 command=php /app/artisan amqp:consume tv-notification.email  # see /application/config/amqp.php
 autostart=true
 autorestart=true
+environment=HOME="/home/www-data"
 user=www-data
 numprocs=1
 stdout_logfile=/dev/stdout
