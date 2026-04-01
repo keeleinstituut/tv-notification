@@ -7,6 +7,7 @@ use App\Mail\InstitutionUserActivated;
 use App\Mail\InstitutionUserAssignedToProject;
 use App\Mail\InstitutionUserCreated;
 use App\Mail\NewVendorTaskAvailable;
+use App\Mail\NoExternalVendorsAvailable;
 use App\Mail\ProjectAccepted;
 use App\Mail\ProjectCancelled;
 use App\Mail\ProjectCreated;
@@ -15,10 +16,12 @@ use App\Mail\ProjectReadyToBeReviewed;
 use App\Mail\ProjectRegistered;
 use App\Mail\ProjectRejected;
 use App\Mail\ProjectSentToClient;
+use App\Mail\ProjectTimeslotPassedWithNoAssignee;
 use App\Mail\SubProjectIsReadyForReview;
 use App\Mail\SubProjectTaskDone;
 use App\Mail\TaskAccepted;
 use App\Mail\TaskCancelled;
+use App\Mail\TaskDeclinedByVendor;
 use App\Mail\VendorTaskRejected;
 use AuditLogClient\Services\AuditLogMessageBuilder;
 use AuditLogClient\Services\AuditLogPublisher;
@@ -118,6 +121,9 @@ class SendEmailNotificationListener
             NotificationType::TaskCancelled => new TaskCancelled($data),
             NotificationType::InstitutionUserCreated => new InstitutionUserCreated($data),
             NotificationType::InstitutionUserActivated => new InstitutionUserActivated($data),
+            NotificationType::NoExternalVendorsAvailable => new NoExternalVendorsAvailable($data),
+            NotificationType::ProjectTimeslotPassedWithNoAssignee => new ProjectTimeslotPassedWithNoAssignee($data),
+            NotificationType::TaskDeclinedByVendor => new TaskDeclinedByVendor($data),
             default => throw new RuntimeException('No email message found for notification type: '.$notificationType->value)
         };
     }
