@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use InvalidArgumentException;
 use KeycloakAuthGuard\Middleware\EnsureJwtBelongsToServiceAccountWithSyncRole;
+use NotificationClient\DataTransferObjects\EmailNotificationMessage;
 use NotificationClient\Enums\NotificationType;
 use PhpAmqpLib\Wire\AMQPTable;
 use RuntimeException;
@@ -82,17 +83,24 @@ class SendEmailNotificationListener
         );
     }
 
+    /**
+     * @throws Throwable
+     */
     private function sendEmail(EmailNotificationConsumedEvent $event): void
     {
         Mail::send($this->composeMessage($event));
 
-        $this->auditLogPublisher->publish(
-            AuditLogMessageBuilder::make(
-                happenedAt: Date::now(),
-                contextInstitutionId: data_get($event->message->get('application_headers'), 'institutionId'),
-            )
-                ->toDispatchNotificationEvent($event->getBody())
+        $this->auditLogPublisher->publishDispatchedNotification(
+            EmailNotificationMessage::make($event->getBody()),
+            data_get($event->message->get('application_headers'), 'institutionId')
         );
+
+//        $this->auditLogPublisher->publish(
+//            AuditLogMessageBuilder::make(
+//                happenedAt: Date::now(),
+//                contextInstitutionId: data_get($event->message->get('application_headers'), 'institutionId'),
+//            )
+//                ->toDispatchNotificationEvent($event->getBody())
     }
 
     private function composeMessage(EmailNotificationConsumedEvent $event): Mailable
