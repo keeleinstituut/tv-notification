@@ -23,12 +23,11 @@ use App\Mail\TaskAccepted;
 use App\Mail\TaskCancelled;
 use App\Mail\TaskDeclinedByVendor;
 use App\Mail\VendorTaskRejected;
-use AuditLogClient\Services\AuditLogMessageBuilder;
+use App\Mail\VendorWasNotAssignedAutomatically;
 use AuditLogClient\Services\AuditLogPublisher;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -132,6 +131,7 @@ class SendEmailNotificationListener
             NotificationType::NoExternalVendorsAvailable => new NoExternalVendorsAvailable($data),
             NotificationType::ProjectTimeslotPassedWithNoAssignee => new ProjectTimeslotPassedWithNoAssignee($data),
             NotificationType::TaskDeclinedByVendor => new TaskDeclinedByVendor($data),
+            NotificationType::VendorWasNotAssignedAutomatically => new VendorWasNotAssignedAutomatically($data),
             default => throw new RuntimeException('No email message found for notification type: '.$notificationType->value)
         };
     }

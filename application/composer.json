@@ -8,7 +8,7 @@
         "php": "^8.5",
         "guzzlehttp/guzzle": "^7.10",
         "innoge/laravel-msgraph-mail": "^1.0",
-        "keeleinstituut/tv-common-laravel-amqp": "^0.0.82",
+        "keeleinstituut/tv-common-laravel-amqp": "~0.0.84",
         "keeleinstituut/tv-common-laravel-security": "^0.0.22",
         "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.2",
