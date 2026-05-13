@@ -8,6 +8,12 @@ use App\Mail\InstitutionUserAssignedToProject;
 use App\Mail\InstitutionUserCreated;
 use App\Mail\NewVendorTaskAvailable;
 use App\Mail\NoExternalVendorsAvailable;
+use App\Mail\OutsourceOfferDeclined;
+use App\Mail\OutsourceOfferRequestAccepted;
+use App\Mail\OutsourceOfferRequestDeclined;
+use App\Mail\OutsourceOfferRequestExpired;
+use App\Mail\OutsourceOfferRequestSent;
+use App\Mail\OutsourceRequestCancelled;
 use App\Mail\ProjectAccepted;
 use App\Mail\ProjectCancelled;
 use App\Mail\ProjectCreated;
@@ -132,6 +138,12 @@ class SendEmailNotificationListener
             NotificationType::ProjectTimeslotPassedWithNoAssignee => new ProjectTimeslotPassedWithNoAssignee($data),
             NotificationType::TaskDeclinedByVendor => new TaskDeclinedByVendor($data),
             NotificationType::VendorWasNotAssignedAutomatically => new VendorWasNotAssignedAutomatically($data),
+            NotificationType::OutsourceOfferRequestSent => new OutsourceOfferRequestSent($data),
+            NotificationType::OutsourceOfferRequestAccepted => new OutsourceOfferRequestAccepted($data),
+            NotificationType::OutsourceOfferRequestDeclined => new OutsourceOfferRequestDeclined($data),
+            NotificationType::OutsourceOfferRequestExpired => new OutsourceOfferRequestExpired($data),
+            NotificationType::OutsourceOfferDeclined => new OutsourceOfferDeclined($data),
+            NotificationType::OutsourceRequestCancelled => new OutsourceRequestCancelled($data),
             default => throw new RuntimeException('No email message found for notification type: '.$notificationType->value)
         };
     }
