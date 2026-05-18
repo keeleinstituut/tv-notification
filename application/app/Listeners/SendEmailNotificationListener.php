@@ -23,6 +23,7 @@ use App\Mail\ProjectRegistered;
 use App\Mail\ProjectRejected;
 use App\Mail\ProjectSentToClient;
 use App\Mail\ProjectTimeslotPassedWithNoAssignee;
+use App\Mail\ReactionTimeExpired;
 use App\Mail\SubProjectIsReadyForReview;
 use App\Mail\SubProjectTaskDone;
 use App\Mail\TaskAccepted;
@@ -137,6 +138,7 @@ class SendEmailNotificationListener
             NotificationType::NoExternalVendorsAvailable => new NoExternalVendorsAvailable($data),
             NotificationType::ProjectTimeslotPassedWithNoAssignee => new ProjectTimeslotPassedWithNoAssignee($data),
             NotificationType::TaskDeclinedByVendor => new TaskDeclinedByVendor($data),
+            NotificationType::ReactionTimeExpired => new ReactionTimeExpired($data),
             NotificationType::VendorWasNotAssignedAutomatically => new VendorWasNotAssignedAutomatically($data),
             NotificationType::OutsourceOfferRequestSent => new OutsourceOfferRequestSent($data),
             NotificationType::OutsourceOfferRequestAccepted => new OutsourceOfferRequestAccepted($data),
