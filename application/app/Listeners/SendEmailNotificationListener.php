@@ -8,6 +8,7 @@ use App\Mail\InstitutionUserAssignedToProject;
 use App\Mail\InstitutionUserCreated;
 use App\Mail\NewVendorTaskAvailable;
 use App\Mail\NoExternalVendorsAvailable;
+use App\Mail\OutsourceOfferAccepted;
 use App\Mail\OutsourceOfferDeclined;
 use App\Mail\OutsourceOfferRequestAccepted;
 use App\Mail\OutsourceOfferRequestDeclined;
@@ -144,6 +145,7 @@ class SendEmailNotificationListener
             NotificationType::OutsourceOfferRequestAccepted => new OutsourceOfferRequestAccepted($data),
             NotificationType::OutsourceOfferRequestDeclined => new OutsourceOfferRequestDeclined($data),
             NotificationType::OutsourceOfferRequestExpired => new OutsourceOfferRequestExpired($data),
+            NotificationType::OutsourceOfferAccepted => new OutsourceOfferAccepted($data),
             NotificationType::OutsourceOfferDeclined => new OutsourceOfferDeclined($data),
             NotificationType::OutsourceRequestCancelled => new OutsourceRequestCancelled($data),
             default => throw new RuntimeException('No email message found for notification type: '.$notificationType->value)
