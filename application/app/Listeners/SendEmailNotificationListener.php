@@ -23,12 +23,14 @@ use App\Mail\ProjectRegistered;
 use App\Mail\ProjectRejected;
 use App\Mail\ProjectSentToClient;
 use App\Mail\ProjectTimeslotPassedWithNoAssignee;
+use App\Mail\ProjectUpdated;
 use App\Mail\ReactionTimeExpired;
 use App\Mail\SubProjectIsReadyForReview;
 use App\Mail\SubProjectTaskDone;
 use App\Mail\TaskAccepted;
 use App\Mail\TaskCancelled;
 use App\Mail\TaskDeclinedByVendor;
+use App\Mail\TaskUpdated;
 use App\Mail\VendorTaskRejected;
 use App\Mail\VendorWasNotAssignedAutomatically;
 use AuditLogClient\Services\AuditLogPublisher;
@@ -146,6 +148,8 @@ class SendEmailNotificationListener
             NotificationType::OutsourceOfferRequestExpired => new OutsourceOfferRequestExpired($data),
             NotificationType::OutsourceOfferDeclined => new OutsourceOfferDeclined($data),
             NotificationType::OutsourceRequestCancelled => new OutsourceRequestCancelled($data),
+            NotificationType::ProjectUpdated => new ProjectUpdated($data),
+            NotificationType::TaskUpdated => new TaskUpdated($data),
             default => throw new RuntimeException('No email message found for notification type: '.$notificationType->value)
         };
     }
