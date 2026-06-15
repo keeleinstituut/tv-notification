@@ -15,6 +15,7 @@ use App\Mail\OutsourceOfferRequestExpired;
 use App\Mail\OutsourceOfferRequestSent;
 use App\Mail\OutsourceRequestCancelled;
 use App\Mail\ProjectAccepted;
+use App\Mail\ProjectAutoAcceptancePending;
 use App\Mail\ProjectCancelled;
 use App\Mail\ProjectCreated;
 use App\Mail\ProjectDeadlineReached;
@@ -150,6 +151,7 @@ class SendEmailNotificationListener
             NotificationType::OutsourceRequestCancelled => new OutsourceRequestCancelled($data),
             NotificationType::ProjectUpdated => new ProjectUpdated($data),
             NotificationType::TaskUpdated => new TaskUpdated($data),
+            NotificationType::ProjectAutoAcceptancePending => new ProjectAutoAcceptancePending($data),
             default => throw new RuntimeException('No email message found for notification type: '.$notificationType->value)
         };
     }
