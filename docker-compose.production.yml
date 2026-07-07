@@ -39,3 +39,9 @@ services:
       - AUDIT_LOG_EVENTS_EXCHANGE=tv-audit-log.events
       - EMAIL_NOTIFICATION_EXCHANGE=tv-notification.email
       - EMAIL_NOTIFICATION_QUEUE=tv-notification.email
+      - MAIL_MAILER=smtp
+      - MAIL_HOST=mailcatcher
+      - MAIL_PORT=1025
+      - MAIL_USERNAME=null
+      - MAIL_PASSWORD=null
+      - MAIL_ENCRYPTION=null

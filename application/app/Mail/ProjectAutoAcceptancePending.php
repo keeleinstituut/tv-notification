@@ -11,13 +11,16 @@ class ProjectAutoAcceptancePending extends BaseEmailNotificationMessage
 
     protected function title(): string
     {
-        return 'Vastuvõtmata tellimus määratakse automaatselt vastuvõetuks';
+        return 'Vastuvõtmata tellimusused määratakse automaatselt vastuvõetuks';
     }
 
     protected function templateVariables(): array
     {
         return [
-            'projectExtId' => $this->getVariable('project.ext_id'),
+            'projectExtIds' => collect($this->getVariable('projects.*.ext_id'))
+                ->filter()
+                ->values()
+                ->all(),
         ];
     }
 }

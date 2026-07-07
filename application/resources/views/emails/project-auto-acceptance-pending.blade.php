@@ -1,5 +1,11 @@
 @extends('emails.layout')
 
 @section('content')
-    Teie tellimus {{ $projectExtId }} on valmis ja ootab teie poolt vastuvõtmist. Süsteem määrab tellimus nr {{ $projectExtId }} automaatselt vastuvõetuks ühe ööpäeva möödudes.
+    Järgnevad tellimused on valmis ja ootavad teie poolt vastuvõtmist. Süsteem määrab tellimused automaatselt vastuvõetuks ühe ööpäeva möödudes.
+    Kõnealused tellimused:
+    <ul>
+        @foreach ($projectExtIds as $projectExtId)
+            <li>{{ $projectExtId }}</li>
+        @endforeach
+    </ul>
 @stop
