@@ -8,6 +8,7 @@ use App\Mail\InstitutionUserAssignedToProject;
 use App\Mail\InstitutionUserCreated;
 use App\Mail\NewVendorTaskAvailable;
 use App\Mail\NoExternalVendorsAvailable;
+use App\Mail\OutsourceOfferAccepted;
 use App\Mail\OutsourceOfferDeclined;
 use App\Mail\OutsourceOfferRequestAccepted;
 use App\Mail\OutsourceOfferRequestDeclined;
@@ -148,6 +149,7 @@ class SendEmailNotificationListener
             NotificationType::OutsourceOfferRequestDeclined => new OutsourceOfferRequestDeclined($data),
             NotificationType::OutsourceOfferRequestExpired => new OutsourceOfferRequestExpired($data),
             NotificationType::OutsourceOfferDeclined => new OutsourceOfferDeclined($data),
+            NotificationType::OutsourceOfferAccepted => new OutsourceOfferAccepted($data),
             NotificationType::OutsourceRequestCancelled => new OutsourceRequestCancelled($data),
             NotificationType::ProjectUpdated => new ProjectUpdated($data),
             NotificationType::TaskUpdated => new TaskUpdated($data),
